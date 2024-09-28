@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather in {{ city }}</title>
+</head>
+<body>
+    <h1>Weather in {{ city }}, {{ country }}</h1>
+    <img src="{{ icon_url }}" alt="Weather icon">
+    <p>Temperature: {{ temperature }}˚C</p>
+    <p>Description: {{ description }}</p>
+
+    <a href="/">Search for another city</a>
+</body>
+</html>
