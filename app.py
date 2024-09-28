@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 import requests
 import creds  # Ensure creds.py has your API key
+import os
+
+API_key = os.getenv('API_KEY')
+
 
 app = Flask(__name__)
 
