@@ -1,23 +1,33 @@
 from flask import Flask, render_template, request
 import requests
-import creds  # Ensure creds.py has your API key
 import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Load the API key from the environment variable
 API_key = os.getenv('API_KEY')
-
+print(f"API Key: {API_key}")
 
 app = Flask(__name__)
 
 # Function to get weather info from OpenWeatherMap API
 def get_weather(city):
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={creds.API_key}"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_key}"
     res = requests.get(url)
-  
-    if res.status_code == 404:
-        return None
-    
+
+    # Check if the response was successful
+    if res.status_code != 200:
+        return None  # or handle specific status codes as needed
+
     # Parse the response JSON to get weather info
     weather = res.json()
+    
+    # Check if 'weather' is in the response
+    if 'weather' not in weather:
+        return None  # or handle the error accordingly
+    
     icon_id = weather['weather'][0]['icon']
     temperature = weather['main']['temp'] - 273.15
     description = weather['weather'][0]['description']
