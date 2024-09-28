@@ -24,17 +24,21 @@ def get_weather(city):
     # Parse the response JSON to get weather info
     weather = res.json()
     
+    # Debug print to see the full response
+    print(weather)  # Check the response structure
+
     # Check if 'weather' is in the response
     if 'weather' not in weather:
         return None  # or handle the error accordingly
     
     icon_id = weather['weather'][0]['icon']
-    temperature = weather['main']['temp'] - 273.15
+    temperature = round(weather['main']['temp'] - 273.15) 
+
     description = weather['weather'][0]['description']
     city = weather['name']
     country = weather['sys']['country']
 
-    # Get the icon URL and return all the weather info
+    # Use the SVG icon URL instead of PNG
     icon_url = f"https://openweathermap.org/img/wn/{icon_id}@2x.png"
     return (icon_url, temperature, description, city, country)
 

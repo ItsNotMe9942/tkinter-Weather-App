@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Link to external CSS -->
     <title>Weather in {{ city }}</title>
 </head>
-<body>
-    <h1>Weather in {{ city }}, {{ country }}</h1>
-    <img src="{{ icon_url }}" alt="Weather icon">
-    <p>Temperature: {{ temperature }}˚C</p>
-    <p>Description: {{ description }}</p>
-
-    <a href="/">Search for another city</a>
+<body class="container">
+    <h1 class="text-center">Weather in {{ city }}, {{ country }}</h1>
+    <div class="text-center">
+        <img src="{{ icon_url }}" alt="Weather icon" class="weather-icon">
+    </div>
+    <p class="text-center">Temperature: {{ temperature }}˚C</p>
+    <p class="text-center">Description: {{ description }}</p>
+    <div class="text-center">
+        <a href="/" class="btn btn-primary">Search for another city</a>
+    </div>
 </body>
 </html>
